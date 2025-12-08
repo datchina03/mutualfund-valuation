@@ -25,4 +25,11 @@ public class EnrollmentServiceImpl implements EnrollmentService{
 		usersRepository.save(users);
 	}
 
+	@Override
+	public Users getUser(String userName) {
+		return usersRepository.findByUserName(userName);
+	}
+	
+	
+
 }
