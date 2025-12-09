@@ -14,6 +14,7 @@ import com.example.cams.mf.service.EnrollmentService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.security.PermitAll;
+import jakarta.validation.Valid;
 
 @RestController
 @Tag(name="API to generate the JWT Token")
@@ -26,7 +27,7 @@ public class AuthController {
 	
 	@PostMapping("/auth")
 	@PermitAll
-	public ResponseEntity<?> getJwtToken(@RequestBody UserAuthRequest userAuthRequest) {
+	public ResponseEntity<?> getJwtToken(@Valid @RequestBody UserAuthRequest userAuthRequest) {
 		Users user = enrollmentServiceImpl.getUser(userAuthRequest.username());
 		if (user == null)
 			return ResponseEntity.status(401).body("Invalid credentials");

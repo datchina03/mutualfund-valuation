@@ -18,6 +18,7 @@ import com.example.cams.mf.service.AdminService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/admin")
@@ -39,14 +40,14 @@ public class AdminController {
 	@Operation(summary="Delete the user")
 	public ResponseEntity<String> deleteUser(@PathVariable Long userId){
 		adminService.deleteUser(userId);
-		return ResponseEntity.ok("user deleted successfully");
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping("/fundnav")
 	@Operation(summary="updating the fund Nav")
-	public ResponseEntity<String> addFundNav(@RequestBody FundsDetails fundNavRequest){
+	public ResponseEntity<String> addFundNav(@Valid @RequestBody FundsDetails fundNavRequest){
 		adminService.addFundDetails(fundNavRequest);
-		return ResponseEntity.ok().body("SUCCESS");
+		return ResponseEntity.noContent().build();
 	}
 	
 }

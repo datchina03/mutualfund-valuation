@@ -17,12 +17,11 @@ public class SecurityConfig {
 	JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) {
+	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf(csrf->csrf.disable())
-		.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-		.authorizeHttpRequests(auth -> auth.requestMatchers("/register","/auth/login","/swagger-ui.html").permitAll()
-				.anyRequest().authenticated());
-		httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+		.authorizeHttpRequests(auth -> /*auth.requestMatchers("/register","/auth/login","/swagger-ui.html").permitAll()*/
+				auth.anyRequest().permitAll());
+		//httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		return httpSecurity.build();
 	}
 	

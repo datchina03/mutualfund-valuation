@@ -12,6 +12,7 @@ import com.example.cams.mf.service.OrderService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -23,7 +24,7 @@ public class UserContoller {
 
 	@PostMapping("/order")
 	@Operation(summary="users can buy mf units or redeem their mf units using this API")
-	public ResponseEntity<String> executeBuyOrder(@RequestBody OrderRequest orderRequest) {
+	public ResponseEntity<String> executeBuyOrder(@Valid @RequestBody OrderRequest orderRequest) {
 		orderServiceImpl.executeOrder(orderRequest);
 		return ResponseEntity.ok().body("Success");
 	}

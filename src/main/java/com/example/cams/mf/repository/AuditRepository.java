@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.cams.mf.model.TransactionDetails;
 
-public interface AuditRepository extends CrudRepository<TransactionDetails, Long> {
+public interface AuditRepository extends CrudRepository<TransactionDetails,Long> {
 
 }
